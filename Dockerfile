@@ -14,7 +14,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 ENV SECRET_KEY=test
-ENV SENTRY_DSN=https://31b93fbf21624a8ea32e27b9ee5da6d1@o1009246.ingest.sentry.io/5979117
+ENV SENTRY_DSN=test
 ENV PORT=8000
 
 # copy project
@@ -24,7 +24,7 @@ COPY . .
 RUN pip install --upgrade pip 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+# EXPOSE 8000
 
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 CMD python3 manage.py runserver 0.0.0.0:$PORT
