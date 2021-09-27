@@ -4,10 +4,6 @@ jobs:
   test:
     docker:
     - image: circleci/python:3.6
-    environment:
-      - PORT: $CIRCLE_PORT
-      - SENTRY_DSN: $CIRCLE_SENTRY_DSN
-      - SECRET_KEY: $CIRCLE_SECRET_KEY
     steps:
       - checkout
       - restore_cache:
@@ -30,14 +26,9 @@ jobs:
   build_and_push:
     docker:
       - image: circleci/python:3.6
-    environment:
-      - PORT: $CIRCLE_PORT
-      - SENTRY_DSN: $CIRCLE_SENTRY_DSN
-      - SECRET_KEY: $CIRCLE_SECRET_KEY
     steps:
       - checkout
       - setup_remote_docker
-      - run: sh -c env
       - run:
           name: Build and push Docker image
           command: |
