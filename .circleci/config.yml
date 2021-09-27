@@ -1,6 +1,6 @@
-version: 2.1
 
 workflows:
+  version: 2.1
   heroku_deploy:
     jobs:
       - test
@@ -34,6 +34,7 @@ jobs:
           command: |
             . venv/bin/activate
             pytest
+
   build_and_push:
     docker:
       - image: circleci/python:3.6
@@ -64,21 +65,4 @@ jobs:
             docker tag jaykoo/${HEROKU_APP_NAME}:${CIRCLE_SHA1:0:10} registry.heroku.com/${HEROKU_APP_NAME}/web
             docker push registry.heroku.com/${HEROKU_APP_NAME}/web
             heroku container:release web -a ${HEROKU_APP_NAME}
-            
 
-
-          # filters:
-          #   branches:
-          #     only: master
-      # - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-      #     requires:
-      #       - build_and_push
-          # filters:
-          #   branches:
-          #     only: master
-      # - deploy:
-      #     requires:
-      #       - build_and_push
-          # filters:
-          #   branches:
-          #     only: master
