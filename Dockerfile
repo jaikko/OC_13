@@ -15,6 +15,8 @@ ENV PYTHONUNBUFFERED 1
 
 
 ENV PORT=8000
+ENV SENTRY_DNS=test
+ENV SECRET_KEY=test
 # copy project
 COPY . .
 
