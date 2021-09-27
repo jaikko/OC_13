@@ -33,6 +33,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - run: sh -c env
       - run:
           name: Build and push Docker image
           command: |
