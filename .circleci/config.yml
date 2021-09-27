@@ -26,6 +26,10 @@ jobs:
   build_and_push:
     docker:
       - image: circleci/python:3.6
+    environment:
+      PORT: $PORT
+      SENTRY_DSN: $SENTRY_DSN
+      SECRET_KEY: $SECRET_KEY
     steps:
       - checkout
       - setup_remote_docker
