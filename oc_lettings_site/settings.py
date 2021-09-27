@@ -11,7 +11,7 @@ environ.Env.read_env()
 
 #Sentry
 sentry_sdk.init(
-    dsn=env('SENTRY_DSN'),
+    dsn=env('SENTRY_DSN', 'https://31b93fbf21624a8ea32e27b9ee5da6d1@o1009246.ingest.sentry.io/5979117'),
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
