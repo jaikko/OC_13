@@ -1,5 +1,16 @@
 version: 2.1
 
+workflows:
+  heroku_deploy:
+    jobs:
+      - test
+      - build_and_push:
+          requires:
+            - test
+      - deploy:
+          requires:
+            - build_and_push
+
 jobs:
   test:
     docker:
@@ -54,16 +65,7 @@ jobs:
             docker push registry.heroku.com/${HEROKU_APP_NAME}/web
             heroku container:release web -a ${HEROKU_APP_NAME}
             
-workflows:
-  heroku_deploy:
-    jobs:
-      - test
-      - build_and_push:
-          requires:
-            - test
-      - deploy:
-          requires:
-            - build_and_push
+
 
           # filters:
           #   branches:
